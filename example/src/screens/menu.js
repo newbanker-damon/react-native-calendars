@@ -52,6 +52,14 @@ export default class MenuScreen extends Component {
           >
             <Text style={styles.menuText}>Week Calendar</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            //testID={testIDs.menu.WEEK_CALENDAR}
+            style={styles.menu}
+            onPress={this.onZOCalendarPress.bind(this)}
+          >
+            <Text style={styles.menuText}>ZO Calendar</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     );
@@ -104,6 +112,10 @@ export default class MenuScreen extends Component {
 
   onWeekPress() {
     this.pushScreen('ExpandableCalendar', {weekView: true});
+  }
+
+  onZOCalendarPress() {
+    this.pushScreen('ZOCalendar');
   }
 }
 
