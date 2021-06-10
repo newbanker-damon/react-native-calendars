@@ -344,12 +344,12 @@ class ExpandableCalendar extends Component {
     // {year: 2019, month: 4, day: 22, timestamp: 1555977600000, dateString: "2019-04-23"}
     _.invoke(this.props.context, 'setDate', value.dateString, UPDATE_SOURCES.DAY_PRESS);
 
-    setTimeout(() => {
-      // to allows setDate to be completed
-      if (this.state.position === POSITIONS.OPEN) {
-        this.bounceToPosition(this.closedHeight);
-      }
-    }, 0);
+    // setTimeout(() => {
+    //   // to allows setDate to be completed
+    //   if (this.state.position === POSITIONS.OPEN) {
+    //     this.bounceToPosition(this.closedHeight);
+    //   }
+    // }, 0);
   };
 
   onVisibleMonthsChange = value => {
@@ -501,7 +501,7 @@ class ExpandableCalendar extends Component {
               hideArrows={this.shouldHideArrows()}
               onPressArrowLeft={this.onPressArrowLeft}
               onPressArrowRight={this.onPressArrowRight}
-              hideExtraDays={!horizontal}
+              //hideExtraDays={!horizontal}
               renderArrow={this.renderArrow}
               staticHeader
             />
