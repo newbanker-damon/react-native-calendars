@@ -357,9 +357,12 @@ class ExpandableCalendar extends Component {
       this.visibleMonth = _.first(value).month; // equivalent to this.getMonth(value[0].dateString)
 
       // for horizontal scroll
-      const {date, updateSource} = this.props.context;
+      const {date} = this.props.context;
 
-      if (this.visibleMonth !== this.getMonth(date) && updateSource !== UPDATE_SOURCES.DAY_PRESS) {
+      if (
+        this.visibleMonth !== this.getMonth(date)
+        //&& updateSource !== UPDATE_SOURCES.DAY_PRESS
+      ) {
         const next = this.isLaterDate(_.first(value), date);
         this.scrollPage(next);
       }
