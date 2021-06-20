@@ -344,12 +344,12 @@ class ExpandableCalendar extends Component {
     // {year: 2019, month: 4, day: 22, timestamp: 1555977600000, dateString: "2019-04-23"}
     _.invoke(this.props.context, 'setDate', value.dateString, UPDATE_SOURCES.DAY_PRESS);
 
-    setTimeout(() => {
-      // to allows setDate to be completed
-      if (this.state.position === POSITIONS.OPEN) {
-        this.bounceToPosition(this.closedHeight);
-      }
-    }, 0);
+    // setTimeout(() => {
+    //   // to allows setDate to be completed
+    //   if (this.state.position === POSITIONS.OPEN) {
+    //     this.bounceToPosition(this.closedHeight);
+    //   }
+    // }, 0);
   };
 
   onVisibleMonthsChange = value => {
@@ -357,9 +357,12 @@ class ExpandableCalendar extends Component {
       this.visibleMonth = _.first(value).month; // equivalent to this.getMonth(value[0].dateString)
 
       // for horizontal scroll
-      const {date, updateSource} = this.props.context;
+      const {date} = this.props.context;
 
-      if (this.visibleMonth !== this.getMonth(date) && updateSource !== UPDATE_SOURCES.DAY_PRESS) {
+      if (
+        this.visibleMonth !== this.getMonth(date)
+        //&& updateSource !== UPDATE_SOURCES.DAY_PRESS
+      ) {
         const next = this.isLaterDate(_.first(value), date);
         this.scrollPage(next);
       }
@@ -501,7 +504,7 @@ class ExpandableCalendar extends Component {
               hideArrows={this.shouldHideArrows()}
               onPressArrowLeft={this.onPressArrowLeft}
               onPressArrowRight={this.onPressArrowRight}
-              hideExtraDays={!horizontal}
+              //hideExtraDays={!horizontal}
               renderArrow={this.renderArrow}
               staticHeader
             />

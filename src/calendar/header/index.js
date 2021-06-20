@@ -6,7 +6,7 @@ import XDate from 'xdate';
 import React, {Component, Fragment} from 'react';
 import {ActivityIndicator, Platform, View, Text, TouchableOpacity, Image} from 'react-native';
 
-import {shouldUpdate} from '../../component-updater';
+//import {shouldUpdate} from '../../component-updater';
 import {weekDayNames} from '../../dateutils';
 import {
   CHANGE_MONTH_LEFT_ARROW,
@@ -62,21 +62,21 @@ class CalendarHeader extends Component {
     this.style = styleConstructor(props.theme);
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (nextProps.month.toString('yyyy MM') !== this.props.month.toString('yyyy MM')) {
-      return true;
-    }
-    return shouldUpdate(this.props, nextProps, [
-      'displayLoadingIndicator',
-      'hideDayNames',
-      'firstDay',
-      'showWeekNumbers',
-      'monthFormat',
-      'renderArrow',
-      'disableArrowLeft',
-      'disableArrowRight'
-    ]);
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   if (nextProps.month.toString('yyyy MM') !== this.props.month.toString('yyyy MM')) {
+  //     return true;
+  //   }
+  //   return shouldUpdate(this.props, nextProps, [
+  //     'displayLoadingIndicator',
+  //     'hideDayNames',
+  //     'firstDay',
+  //     'showWeekNumbers',
+  //     'monthFormat',
+  //     'renderArrow',
+  //     'disableArrowLeft',
+  //     'disableArrowRight'
+  //   ]);
+  // }
 
   addMonth = () => {
     const {addMonth} = this.props;
