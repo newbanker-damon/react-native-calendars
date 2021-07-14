@@ -139,6 +139,33 @@ class ExpandableCalendar extends Component {
       // date was changed from AgendaList, arrows or scroll
       this.scrollToDate(date);
     }
+
+    if (initialPosition !== prevProps.initialPosition) {
+      const {deltaY} = this.state;
+      const {openThreshold, closeThreshold} = this.props;
+      const threshold =
+        initialPosition === POSITIONS.OPEN
+          ? this.openHeight - closeThreshold
+          : this.closedHeight + openThreshold;
+
+      let isOpen = initialPosition === POSITIONS.OPEN;
+
+      const newValue = isOpen ? this.openHeight : this.closedHeight;
+
+      deltaY.setValue(this._height); // set the start position for the animated value
+      this._height = newValue;
+      isOpen = this._height >= threshold; // re-check after this._height was set
+
+      Animated.spring(deltaY, {
+        toValue: this._height,
+        speed: SPEED,
+        bounciness: BOUNCINESS,
+        useNativeDriver: false,
+      }).start(this.onAnimatedFinished);
+      this.setPosition();
+      this.closeHeader(isOpen);
+      this.resetWeekCalendarOpacity(isOpen);
+    }
   }
 
   handleScreenReaderStatus = screenReaderEnabled => {
